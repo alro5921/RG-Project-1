@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Random Graphs Project 1}
+\author{Alex Rose, Pedro}
+\date{February 2016}
+
+\begin{document}
+
+\maketitle
+
+\section{Warm-Up Identities}
+
+\subsection{}
+$$ C'(z) =\sum_{n \ge 0} \frac{c_n}{n!} * \frac{d}{dz} z^n = \sum_{n \ge 1} \frac{c_n}{n!}nz^{n-1}$$ 
+$$\newline = \sum_{n \ge 1} \frac{c_n}{(n-1)!}z^{n-1} = \sum_{n \ge 0} \frac{c_{n+1}}{n!}z^{n} = (c_{n+1})_{n \ge 0} $$
+
+\subsection{}
+$$ \int_{0}^{z} C(t) dt  =\sum_{n \ge 0} \frac{c_n}{n!} * \int_{0}^{z} t^n dt = \sum_{n \ge 1} \frac{c_n}{n!} \frac{z^{n+1}}{n+1}$$ 
+$$\newline = \sum_{n \ge 0} \frac{c_n}{(n+1)!}z^{n+11} = \sum_{n \ge 1} \frac{c_{n-1}}{n!}z^{n} = (c_{n-1})_{n \ge 1} $$ 
+
+\section{Pointed Class}
+For each object of size n, we have n ways of choosing the pointer, one for each element in the object. So the pointed class generating function is of the form:
+
+$$C^\swarrow(z) = \sum_{n \ge 0} n\frac{c_n}{n!}z^n = \sum_{n \ge 0} \frac{c_n}{(n-1)!}zz^{n-1} = z\sum_{n \ge 0} \frac{c_n}{(n-1)!}z^{n-1} = z\sum_{n \ge 0} \frac{c_{n+1}}{n!}z^{n}$$
+
+And from (1.1), the remaining sum is equal to $C'(z)$. So $C^\swarrow(z) = zC'(z)$.
+
+\newpage
+
+\section{Modified Labelled Product}
+
+\subsection{}
+The recursion for the \textit{unlabelled} $c_n$, in terms of $a_n$ and $b_n$, is given by:
+
+$$c_n = \sum_{i + k = n} a_ib_k$$
+
+As a particular index must be in A, we choose $k$ labels from a pool of $n-1 = i + k - 1$ labels for the B-member. Thus our labelled recursion is of the form:
+
+$$c_n = \sum_{i + k = n} \binom{i + k - 1}{k}a_ib_k$$
+
+\subsection{}
+
+Note that:
+
+$$C(z) =  \int_{0}^{z} C'(t) dt = \int_{0}^{z} \sum_{n \ge 0} \frac{c_{n+1}}{n!}t^{n}  = \int_{0}^{z} \sum_{n \ge 1} \frac{c_n}{(n-1)!}t^{n-1}  dt$$ 
+
+We seek the value of the inner sum, $C'(z)$. Substituting $c_n$ for the recurrence found in 3.1:
+
+$$\sum_{n \ge 1}\frac{c_n}{(n-1)!}t^{n-1}  = \sum_{n \ge 1}\frac{1}{(n-1)!} \bigg( \sum_{i + k = n} \binom{i + k - 1}{k}a_ib_k\bigg)t^{n-1}$$
+
+We can separate the variables in the binomial coefficient.
+
+$$\binom{i + k - 1}{k} = \frac{(i+k-1)!}{k!(i + k - 1 - k)!} = \frac{(n-1)!}{k!(i-1)!} $$
+
+We then move the $(n-1)!$ term to the outer sum, cancelling the $\frac{1}{(n-1)!}$ term.
+
+$$\sum_{n \ge 1}\frac{c_n}{(n-1)!}t^{n-1}  = \sum_{n \ge 1} \bigg( \sum_{i + k = n} \frac{a_ib_k}{(i-1)!k!}\bigg)t^{n-1}$$
+
+We now separate the variables in this inner sum, then (appropriately) distribute the t power into the inner sum:
+
+$$ = \sum_{n \ge 1} \bigg( \sum_{i + k = n} \frac{a_it^{i-1}}{(i-1)!} * \frac{b_kt^k}{k!}\bigg)$$
+
+Where each term represents the convolution of $(a_{i+1})_{i \ge 0}$ and $(b_{k})_{k \ge 0}$. Thus $C'(t) = A'(t) \cdot B(t)$, and so:
+
+$$C(z) = \int_{0}^{z} A'(t) \cdot B(t) dt$$
+
+
+
+\end{document}

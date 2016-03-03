@@ -1,8 +1,10 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{geometry}
+\geometry{margin=1in}
 
-\title{Random Graphs Project 1}
+\title{\vspace{-5.5cm}Random Graphs Project 1}
 \author{Alex Rose, Pedro}
 \date{February 2016}
 
@@ -27,7 +29,6 @@ $$C^\swarrow(z) = \sum_{n \ge 0} n\frac{c_n}{n!}z^n = \sum_{n \ge 0} \frac{c_n}{
 
 And from (1.1), the remaining sum is equal to $C'(z)$. So $C^\swarrow(z) = zC'(z)$.
 
-\newpage
 
 \section{Modified Labelled Product}
 
@@ -65,6 +66,8 @@ $$ = \sum_{n \ge 1} \bigg( \sum_{i + k = n} \frac{a_it^{i-1}}{(i-1)!} * \frac{b_
 Where each term represents the convolution of $(a_{i+1})_{i \ge 0}$ and $(b_{k})_{k \ge 0}$. Thus $C'(t) = A'(t) \cdot B(t)$, and so:
 
 $$C(z) = \int_{0}^{z} A'(t) \cdot B(t) dt$$
+
+\section{Records}
 
 
 

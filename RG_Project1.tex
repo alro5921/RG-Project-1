@@ -70,10 +70,35 @@ $$C(z) = \int_{0}^{z} A'(t) \cdot B(t) dt$$
 \section{Records}
 
 \subsection{}
+Consider $(\{1\}^+\otimes \mathcal{P})$. This means all the permutations of $\mathcal{P}$ where the element $\{1\}$ has the highest label or in other words it is the start of a record. The power to the $k$ is the cross product of $k$ of these combinatorial classes. This order matters in this formulation, but the only valid ordering of the records is lowest to highest. Thus our generated set is effectively unordered for our purposes, which is captured by the transformation to a multiset. 
+
+\subsection{} 
+
+From 3.2:
+
+$$(\{1\}^+\otimes \mathcal{P})^k(z) = \left(\int_{0}^{z} \{1\}'(t) \cdot P(t) dt\right)^k = \left(\int_{0}^{z} 1 \cdot \frac{1}{1-z}  dt\right)^k = \log(1-z)^k $$ 
+
+As discussed in the previous section, the "input" order forced by the cross product is not relevant for our purposes. Taking the multiset allows us to disregard this initial ordering, but then overcounts by exactly $\frac{1}{k!}$ since there is exactly one valid ordering. Therefore the result is:
+
+As discussed in the previous section, the "input" order forced by the cross product is not relevant for our purposes. So this ordering of k record segments overcounts by $k!$. The order-ignoring multiset corrects for this and scales down the above expression by $\frac{1}{k!}$, so $MSet(\{1\}^+\otimes \mathcal{P})^k(z) = \frac{1}{k!}\log(1-z)^k$.
 
 \subsection{}
 
-\subsection{}
+Note $P_k(z)$ counts the number of n-sized elements with k records, with k fixed over the univariate generating function: 
+
+$$P_k(z) =  \frac{c_1}{1!}z^1 + \frac{c_2}{2!}z^2 +... = \frac{r_{1,k}}{1!}z^1 + \frac{r_{2,k}}{2!}z^2 +... = \sum_{n\ge 0} \frac{r_{n,k}}{n!}z^n$$
+
+We can swap the summations of $\mathcal{P}(z,x)$:
+$$\mathcal{P}(z,x) =\sum_{k\ge 1}\left( \sum_{n\ge 0} \frac{r_{n,k}}{n!}z^n\right) x^k = \sum_{k\ge 1} P_k(z) x^k $$
+
+Substituting the generating function found in 4.2 yields:
+
+\begin{align*}
+	\mathcal{P}(z,x)&=\sum_{n\ge 0, k\ge 1}\frac{r_{n,k}}{n!}z^nx^k\\
+	&=\sum_{k\ge 1}\mathcal{P}_k(z) x^k\\
+	&=\sum_{k\ge 1}\frac{1}{k!}\left(\log\frac{1}{1-z}\right)^kx^k=\sum_{k\ge 1}\frac{1}{k!}\left(x\log\frac{1}{1-z}\right)^k\\
+	&=e^{xlog(\frac{1}{1-z})} = e^{log(\frac{1}{(1-z)^x})} = (1-z)^{-x}
+\end{align*}
 
 \subsection{}
 Take the $m$-th derivative of $\mathcal P(x,z)$ with respect to z. Note this eliminates the first $m$ terms.
@@ -84,7 +109,7 @@ In particular, the $m$-th term is $\sum_{k = 1}^{m}r_{m,k} x^k$ for all $z$. If 
 
 $$\sum_{k = 1}^{n}r_{m,k} x^k = \frac{\partial^m \mathcal P}{\partial z^m}(0,x) $$
 
-Applying these operations to $\mathcal P(x,z) = (1-z)^{-x}$:
+Applying these operations to the right hand side, $\mathcal P(x,z) = (1-z)^{-x}$:
 
 $$\frac{\partial}{\partial z^m} (1-z)^{-x}|_{z = 0} = (-1)^m(-x)(-x-1)(-x-2)....(-x - m + 1)(1-z)^{-x-m}|_{z = 0}$$
 $$= (-1)^m(-1)^m(x)(x+1)(x+2)...(x + m -1)(1-z)^{-x-m}|_{z = 0}$$
@@ -107,7 +132,7 @@ In particular:
 $$G_m(x) = (x+m-1)(x+m-2)...(x+m-j) = F(x)$$ 
 $$G_j(1) = m(m-1)...( (m-j)+1) = \frac{m!}{(m-j)!}$$
 
-We can express the derivative of $G_m(x)$ as two parts via. the power rule:
+We can express the derivative of $G_m(x)$ as two parts via the power rule:
 
 $$G_k(x)|_{x = 1} = (x+m-k)' G_{k-1}(x) + (x+m-k)G'_{k-1}(x)|_{x = 1}$$
 $$= G_{k-1}(1) + (m+1-k)*G'_{k-1}(x)|_{x = 1}$$

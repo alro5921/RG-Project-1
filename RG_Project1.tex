@@ -78,8 +78,6 @@ From 3.2:
 
 $$(\{1\}^+\otimes \mathcal{P})^k(z) = \left(\int_{0}^{z} \{1\}'(t) \cdot P(t) dt\right)^k = \left(\int_{0}^{z} 1 \cdot \frac{1}{1-z}  dt\right)^k = \log(1-z)^k $$ 
 
-As discussed in the previous section, the "input" order forced by the cross product is not relevant for our purposes. Taking the multiset allows us to disregard this initial ordering, but then overcounts by exactly $\frac{1}{k!}$ since there is exactly one valid ordering. Therefore the result is:
-
 As discussed in the previous section, the "input" order forced by the cross product is not relevant for our purposes. So this ordering of k record segments overcounts by $k!$. The order-ignoring multiset corrects for this and scales down the above expression by $\frac{1}{k!}$, so $MSet(\{1\}^+\otimes \mathcal{P})^k(z) = \frac{1}{k!}\log(1-z)^k$.
 
 \subsection{}
